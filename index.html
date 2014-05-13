@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Atom Message Panel by tcarlsen</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Atom Message Panel</h1>
+        <h2>An easy way to display your messages in Atom</h2>
+        <a href="https://github.com/tcarlsen/atom-message-panel" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="the-atom-message-panel" class="anchor" href="#the-atom-message-panel"><span class="octicon octicon-link"></span></a>The Atom Message Panel</h1>
+
+<p><a href="https://gitter.im/tcarlsen/atom-message-panel"><img src="https://badges.gitter.im/tcarlsen/atom-message-panel.png" alt="Gitter chat"></a></p>
+
+<blockquote>
+<p>The easy way to display your messages in <a href="http://atom.io">Atom</a>.</p>
+</blockquote>
+
+<p><img src="https://cloud.githubusercontent.com/assets/145288/2628677/25f9ba7a-be2b-11e3-9780-8172cf7ea292.png" alt="preview"></p>
+
+<h2>
+<a name="why" class="anchor" href="#why"><span class="octicon octicon-link"></span></a>Why!?</h2>
+
+<p>To streamline how plugin messages are displayed in Atom! <img class="emoji" title=":fist:" alt=":fist:" src="https://assets-cdn.github.com/images/icons/emoji/fist.png" height="20" width="20" align="absmiddle"></p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p><strong>JavaScript:</strong></p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">MessagePanelView</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'atom-message-panel'</span><span class="p">).</span><span class="nx">MessagePanelView</span><span class="p">,</span>
+    <span class="nx">PlainMessageView</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'atom-message-panel'</span><span class="p">).</span><span class="nx">PlainMessageView</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">messages</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MessagePanelView</span><span class="p">({</span>
+  <span class="nx">title</span><span class="o">:</span> <span class="s1">'It\'s alive..... IT\'S ALIIIIIVE!!!!'</span>
+<span class="p">});</span>
+
+<span class="nx">messages</span><span class="p">.</span><span class="nx">attach</span><span class="p">();</span>
+
+<span class="nx">messages</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="k">new</span> <span class="nx">PlainMessageView</span><span class="p">({</span>
+  <span class="nx">message</span><span class="o">:</span> <span class="s1">'I did it mommy, I made my first Atom Message Panel!'</span><span class="p">,</span>
+  <span class="nx">className</span><span class="o">:</span> <span class="s1">'text-success'</span>
+<span class="p">}));</span>
+</pre></div>
+
+<p><strong>CoffeeScript:</strong></p>
+
+<div class="highlight highlight-coffeescript"><pre><span class="p">{</span><span class="nx">MessagePanelView</span><span class="p">,</span> <span class="nx">LineMessageView</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span> <span class="s">'atom-message-panel'</span>
+
+<span class="nv">messages = </span><span class="k">new</span> <span class="nx">MessagePanelView</span> <span class="nv">title: </span><span class="s">'Remember your Coffee!'</span>
+
+<span class="nx">messages</span><span class="p">.</span><span class="nx">attach</span><span class="p">()</span>
+
+<span class="nx">messages</span><span class="p">.</span><span class="nx">add</span> <span class="k">new</span> <span class="nx">LineMessageView</span> <span class="nv">line: </span><span class="mi">1</span><span class="p">,</span> <span class="nv">character: </span><span class="mi">4</span><span class="p">,</span> <span class="nv">message: </span><span class="s">'You haven\'t had a single drop of coffee since this character'</span>
+</pre></div>
+
+<h2>
+<a name="api" class="anchor" href="#api"><span class="octicon octicon-link"></span></a>API</h2>
+
+<p><strong>MessagePanelView:</strong></p>
+
+<p><em>It all depends on this guy, this is your init function and you will need it <img class="emoji" title=":sunglasses:" alt=":sunglasses:" src="https://assets-cdn.github.com/images/icons/emoji/sunglasses.png" height="20" width="20" align="absmiddle"></em></p>
+
+<ul>
+<li>
+<code>new MessagePanelView(params)</code>:
+
+<ul>
+<li>
+<code>title</code>: the title of your panel</li>
+<li>
+<code>rawTitle</code>: sat to <code>true</code> will allow the title to contains HTML <em>(default is false)</em>
+</li>
+<li>
+<code>speed</code>: how fast you what the fold/unfold function to run <em>(default is fast)</em>
+</li>
+</ul>
+</li>
+<li>
+<code>attach()</code>: append the panel to the Atom view</li>
+<li>
+<code>close()</code>: closses the panel</li>
+<li>
+<code>setTitle()</code>: change the panel title</li>
+<li>
+<code>toggle()</code>: fold/unfold the panel</li>
+<li>
+<code>clear()</code>: clear the body</li>
+<li>
+<code>add()</code>: add a view to the panel</li>
+</ul><p><strong>PlainMessageView:</strong></p>
+
+<p><em>Lets you add a simple message <img class="emoji" title=":speech_balloon:" alt=":speech_balloon:" src="https://assets-cdn.github.com/images/icons/emoji/speech_balloon.png" height="20" width="20" align="absmiddle"></em></p>
+
+<ul>
+<li>
+<code>PlainMessageView(params)</code>:
+
+<ul>
+<li>
+<code>message</code>: your message to the people</li>
+<li>
+<code>raw</code>: sat to <code>true</code> will allow the mesage to contains HTML <em>(default is false)</em>
+</li>
+<li>
+<code>className</code>: adding css classes to your message <em>(this is optional)</em>
+</li>
+</ul>
+</li>
+</ul><p><strong>LineMessageView:</strong></p>
+
+<p><em>Lets you add messages for a specific line and character, and it will even navigate the user to that position with a single click <img class="emoji" title=":boom:" alt=":boom:" src="https://assets-cdn.github.com/images/icons/emoji/boom.png" height="20" width="20" align="absmiddle"></em></p>
+
+<ul>
+<li>
+<code>LineMessageView(params)</code>:
+
+<ul>
+<li>
+<code>message</code>: your message to the people</li>
+<li>
+<code>line</code>: what line are we talking about?</li>
+<li>
+<code>character</code>: lets be more specific of what we are talking about <em>(this is optional)</em>
+</li>
+<li>
+<code>preview</code>: lets you display a code snippet inside a <code>pre</code> tag <em>(this is optional)</em>
+</li>
+<li>
+<code>className</code>: adding css classes to your message <em>(this is optional)</em>
+</li>
+</ul>
+</li>
+</ul><h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p><a href="LICENSE.md">MIT</a> © tcarlsen</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/tcarlsen/atom-message-panel/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/tcarlsen/atom-message-panel/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/tcarlsen/atom-message-panel"></a> is maintained by <a href="https://github.com/tcarlsen">tcarlsen</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
